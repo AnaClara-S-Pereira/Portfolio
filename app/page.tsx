@@ -12,7 +12,7 @@ export default function PortfolioHub() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 backdrop-blur-md bg-black/20">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <div className="relative w-10 h-10">
-            <Image src="/Logo.png" alt="A.S" fill className="" sizes="20" />
+            <Image src="/logo.png" alt="A.S" fill className="" sizes="20" />
           </div>
 
           <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
