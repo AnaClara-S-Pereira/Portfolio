@@ -17,4 +17,4 @@ O **BugCost** é uma ferramenta que ajuda times de tecnologia a visualizar o imp
 ## ✉️ Contato
 - **LinkedIn:** [ana-pereira-dev](https://www.linkedin.com/in/ana-clara-santos-pereira/)
 - **E-mail:** pereira.anaclara1303@gmail.com
-- **Portfólio:** [anapereiradev.vercel.app](https://anapereiradev.vercel.app)
+- **Portfólio:** [anapereira-dev.vercel.app](https://anapereira-dev.vercel.app/)
