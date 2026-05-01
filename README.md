@@ -15,6 +15,6 @@ Este site foi construído para apresentar minha evolução técnica e os projeto
 O **BugCost** é uma ferramenta que ajuda times de tecnologia a visualizar o impacto financeiro de falhas no sistema. O projeto traduz logs de erro em valores reais para auxiliar na tomada de decisão do negócio.
 
 ## ✉️ Contato
-- **LinkedIn:** [ana-clara-santos-pereira](https://www.linkedin.com/in/ana-clara-santos-pereira/)
+- **LinkedIn:** [ana-pereira-dev](https://www.linkedin.com/in/ana-clara-santos-pereira/)
 - **E-mail:** pereira.anaclara1303@gmail.com
 - **Portfólio:** [anapereiradev.vercel.app](https://anapereiradev.vercel.app)
