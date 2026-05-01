@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ArrowRight, Mail } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import CardProjeto from "./card/page";
@@ -12,12 +12,7 @@ export default function PortfolioHub() {
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 backdrop-blur-md bg-black/20">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           <div className="relative w-10 h-10">
-            <Image
-              src="/Logo.png"
-              alt="Ana Clara"
-              fill
-              className="cursor-pointer hover:opacity-[70%] transition-all duration-100"
-            />
+            <Image src="/Logo.png" alt="A.S" fill className="" sizes="20" />
           </div>
 
           <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
@@ -65,19 +60,24 @@ export default function PortfolioHub() {
               </span>
             </h1>
             <p className="text-zinc-500 text-lg md:text-xl font-medium mt-6 mb-10 max-w-md leading-relaxed">
-              Desenvolvedora de Sistemas | React.js | TypeScript | Next.js |
-              Tailwind CSS | JavaScript | MYSQL
+              Desenvolvedora Web | React.js | TypeScript | Next.js | Tailwind
+              CSS | JavaScript | MYSQL
             </p>
-
-            <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-[#692CB6] transition-all duration-150 cursor-pointer hover:scale-105">
-              Contate-me
-              <ArrowRight size={16} />
-            </button>
+            {/*CURRÍCULO*/}
+            <a
+              href="/Ana_Pereira_Curriculo.pdf"
+              download="Currículo_Ana_Clara_Santos_Pereira.pdf"
+            >
+              <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-[#692CB6] transition-all duration-150 cursor-pointer hover:scale-105">
+                Dowload CV
+                <Download size={16} />
+              </button>
+            </a>
           </div>
 
           {/* LADO DIREITO: FOTO */}
           <div className="relative mt-16 md:mt-0">
-            {/* CÍRCULO ROXO DE FUNDO (ESTÁTICO) */}
+            {/* CÍRCULO FOTO*/}
             <div className="absolute -inset-4 border border-[#692CB6]/20 rounded-full" />
 
             <div className="relative w-72 h-72 md:w-[450px] md:h-[450px] overflow-hidden rounded-full border-[8px] border-[#131313] shadow-[0_0_50px_rgba(105,44,182,0.1)]">
@@ -86,7 +86,8 @@ export default function PortfolioHub() {
                 alt="Ana Clara"
                 fill
                 priority
-                className="cursor-pointer hover:grayscale transition-all duration-700"
+                className="cursor-pointer hover:scale-105 transition-all duration-700"
+                sizes="30"
               />
             </div>
           </div>
@@ -98,16 +99,16 @@ export default function PortfolioHub() {
         id="sobre"
         className="relative flex flex-col items-center justify-center scroll-mt-70"
       >
-        <div className="relative z-10 text-center max-w-3xl">
+        <div className="relative z-10 text-center max-w-3xl mt-15 ">
           <h3 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter">
             Sobre mim
           </h3>
-          <div className="w-30 border-2 rounded ml-[45%] -mt-4 mb-10"></div>
+          <div className="w-30 border-2 rounded ml-[42%] -mt-4 mb-10"></div>
 
           <div className="space-y-6 text-zinc-400 text-lg md:text-xl font-medium leading-relaxed">
             <p>
-              Desenvolvedora
-              <span className="text-zinc-100"> Web</span>. Tenho sólida
+              Como Desenvolvedora
+              <span className="text-zinc-100"> Web</span>, tenho sólida
               experiência em projetos pessoais e acadêmicos, utilizando
               tecnologias modernas como TypeScript, Tailwind CSS, React.js e
               Next.js.
