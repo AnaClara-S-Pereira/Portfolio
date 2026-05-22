@@ -65,7 +65,7 @@ export default function PortfolioHub() {
             </p>
             {/*CURRÍCULO*/}
             <a
-              href="/Ana_Pereira_Curriculo.pdf"
+              href="/AnaClaraSantosPereira_Curriculo.pdf"
               download="Currículo_Ana_Clara_Santos_Pereira.pdf"
             >
               <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-[#692CB6] transition-all duration-150 cursor-pointer hover:scale-105">
