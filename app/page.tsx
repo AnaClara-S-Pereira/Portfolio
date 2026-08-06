@@ -71,7 +71,7 @@ export default function PortfolioHub() {
             </a>
           </div>
 
-          <div className="relative z-10 md:translate-x-0 lg:-translate-x-12">
+          <div className="relative z-10 mb-5 md:mb-0 md:translate-x-0 lg:-translate-x-12">
             <div className="absolute -inset-2.5 border border-[#692CB6]/40 rounded-full animate-pulse" />
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[5px] md:border-[6px] border-[#18181c] shadow-[0_0_40px_rgba(105,44,182,0.35)] group">
               <Image
