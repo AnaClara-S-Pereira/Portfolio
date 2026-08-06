@@ -85,8 +85,7 @@ export default function PortfolioHub() {
                 className="cursor-pointer group-hover:scale-105 transition-all duration-700 object-cover"
                 sizes="(max-width: 768px) 144px, 360px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0d] via-transparent to-transparent opacity-60 pointer-events-none" />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-30 pointer-events-none" />  </div>
           </div>
         </div>
       </header>
