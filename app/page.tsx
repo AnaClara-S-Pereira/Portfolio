@@ -43,7 +43,7 @@ export default function PortfolioHub() {
         </div>
       </nav>
       {/*HEADER*/}
-      <header id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-4 sm:px-6 overflow-hidden">
+      <header id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-6 overflow-hidden">
         <div className="absolute inset-0 hidden md:flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
           <h1 className="text-[22vw] font-black text-white/[0.04] leading-none uppercase tracking-tighter whitespace-nowrap">
             SANTOS
@@ -73,18 +73,19 @@ export default function PortfolioHub() {
 
           <div className="relative z-10 md:translate-x-0 lg:-translate-x-12">
             <div className="absolute -inset-2.5 border border-[#692CB6]/40 rounded-full animate-pulse" />
-            <div className="relative w-[calc(100vw-2rem)] h-[calc(100vw-2rem)] max-w-[340px] max-h-[340px] sm:w-72 sm:h-72 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[5px] md:border-[6px] border-[#18181c] shadow-[0_0_40px_rgba(105,44,182,0.35)] group">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[5px] md:border-[6px] border-[#18181c] shadow-[0_0_40px_rgba(105,44,182,0.35)] group">
               <Image
-                src="/eu3.jpeg"
+                src="/AnaClara.jpeg"
                 alt="Ana Clara"
                 fill
                 priority
                 className="cursor-pointer group-hover:scale-105 transition-all duration-700 object-cover"
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 288px, 360px"
+                sizes="(max-width: 640px) 288px, (max-width: 768px) 320px, 360px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 pointer-events-none" />
             </div>
           </div>
+
         </div>
       </header>
 
