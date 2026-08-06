@@ -42,19 +42,16 @@ export default function PortfolioHub() {
           </div>
         </div>
       </nav>
-
-      {/* HEADER */}
-      <header id="home" className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-4 sm:px-6 overflow-hidden">
-        {/* SANTOS de fundo apenas no desktop */}
+      {/*HEADER*/}
+      <header id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 hidden md:flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
           <h1 className="text-[22vw] font-black text-white/[0.04] leading-none uppercase tracking-tighter whitespace-nowrap">
             SANTOS
           </h1>
         </div>
 
-        <div className="max-w-7xl w-full flex flex-col-reverse md:flex-row items-center justify-between relative z-10 gap-6 md:gap-0">
+        <div className="max-w-7xl w-full flex flex-col-reverse md:flex-row items-center justify-between relative z-10 gap-8 md:gap-0">
 
-          {/* TEXTOS E BOTÃO */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left z-20">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-2 tracking-tighter leading-[0.95] md:leading-[0.9]">
               ANA <br />
@@ -62,34 +59,32 @@ export default function PortfolioHub() {
                 CLARA
               </span>
             </h1>
-            <p className="text-zinc-300 text-xs sm:text-base md:text-xl font-medium mt-2 md:mt-6 mb-6 md:mb-10 max-w-xs sm:max-w-md leading-relaxed">
+            <p className="text-zinc-300 text-xs sm:text-base md:text-xl font-medium mt-3 md:mt-6 mb-6 md:mb-10 max-w-xs sm:max-w-md leading-relaxed">
               Desenvolvedora Web | React.js | TypeScript | Next.js | Tailwind CSS | JavaScript | MySQL
             </p>
 
             <a href="/AnaClaraSantosPereira_Curriculo.pdf" download="Currículo_Ana_Clara_Santos_Pereira.pdf">
-              <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-7 py-3 md:px-10 md:py-5 rounded-full uppercase text-[11px] md:text-xs tracking-widest bg-[#692CB6]/20 hover:bg-[#692CB6] transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-[0_0_30px_rgba(105,44,182,0.5)]">
+              <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-7 py-3.5 md:px-10 md:py-5 rounded-full uppercase text-[11px] md:text-xs tracking-widest bg-[#692CB6]/20 hover:bg-[#692CB6] transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-[0_0_30px_rgba(105,44,182,0.5)]">
                 Download CV
                 <Download size={15} />
               </button>
             </a>
           </div>
 
-          {/* FOTO (Menor no mobile para não ocupar a tela toda) */}
           <div className="relative z-10 md:translate-x-0 lg:-translate-x-12">
-            <div className="absolute -inset-2 border border-[#692CB6]/40 rounded-full animate-pulse" />
-            <div className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[4px] md:border-[6px] border-[#18181c] shadow-[0_0_30px_rgba(105,44,182,0.35)] group">
+            <div className="absolute -inset-2.5 border border-[#692CB6]/40 rounded-full animate-pulse" />
+            <div className="relative w-[calc(100vw-2rem)] h-[calc(100vw-2rem)] max-w-[340px] max-h-[340px] sm:w-72 sm:h-72 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[5px] md:border-[6px] border-[#18181c] shadow-[0_0_40px_rgba(105,44,182,0.35)] group">
               <Image
-                src="/AnaClara.jpeg"
+                src="/eu3.jpeg"
                 alt="Ana Clara"
                 fill
                 priority
                 className="cursor-pointer group-hover:scale-105 transition-all duration-700 object-cover"
-                sizes="(max-width: 640px) 144px, (max-width: 768px) 192px, 360px"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 288px, 360px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 pointer-events-none" />
             </div>
           </div>
-
         </div>
       </header>
 
