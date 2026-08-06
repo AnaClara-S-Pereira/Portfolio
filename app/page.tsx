@@ -5,122 +5,188 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import CardProjeto from "./card/page";
 
+const tecnologias = [
+  { nome: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+  { nome: "CSS3", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
+  { nome: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { nome: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
+  { nome: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { nome: "Next.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
+  { nome: "Tailwind CSS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+  { nome: "Bootstrap", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg" },
+  { nome: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
+  { nome: "PHP", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+  { nome: "MySQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
+
+];
+
 export default function PortfolioHub() {
   return (
-    <div className="bg-[#0A0A0A] min-h-screen text-zinc-300 font-sans selection:bg-[#692CB6]/30 overflow-x-hidden">
+    <div className="bg-[#0a0a0d] min-h-screen text-zinc-200 font-sans selection:bg-[#692CB6]/40 selection:text-white overflow-x-hidden relative">
+
+      {/* GLOWS DE ILUMINAÇÃO DE FUNDO */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#692CB6]/15 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute top-[35%] -left-40 w-[600px] h-[600px] bg-purple-900/15 blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute top-[70%] -right-40 w-[600px] h-[600px] bg-[#692CB6]/15 blur-[180px] pointer-events-none rounded-full" />
+
       {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/5 backdrop-blur-md bg-black/20">
+      <nav className="fixed top-0 w-full z-50 border-b border-white/10 backdrop-blur-xl bg-black/50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-          <div className="relative w-10 h-10">
-            <Image src="/logo.png" alt="A.S" fill className="" sizes="20" />
+          <div className="relative w-10 h-10 hover:opacity-80 transition-opacity cursor-pointer">
+            <Image src="/logo.png" alt="A.S" fill sizes="40px" className="object-contain" />
           </div>
 
-          <div className="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
-            <a href="#home" className="hover:text-white transition-colors">
-              Início
-            </a>
-            <a href="#sobre" className="hover:text-white transition-colors">
-              Sobre
-            </a>
-            <a href="#portfolios" className="hover:text-white transition-colors">
-              Projetos
-            </a>
-            <a href="#contato" className="hover:text-white transition-colors">
-              Contato
-            </a>
+          <div className="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300">
+            <a href="#home" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Início</a>
+            <a href="#tecnologias" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Tecnologias</a>
+            <a href="#sobre" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Sobre</a>
+            <a href="#portfolios" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Projetos</a>
+            <a href="#contato" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Contato</a>
           </div>
         </div>
       </nav>
 
-      {/* HEADER / HERO */}
-      <header
-        id="home"
-        className="relative min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-6 overflow-hidden"
-      >
-        {/* TEXTO DE FUNDO FIXADO PARA NÃO QUEBRAR E FICAR ATRÁS DA FOTO */}
+      {/* HERO / HEADER */}
+      <header id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-6 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
-          <h1 className="text-[17vw] md:text-[22vw] font-black text-white/5 leading-none uppercase tracking-tighter whitespace-nowrap">
+          <h1 className="text-[17vw] md:text-[22vw] font-black text-white/[0.04] leading-none uppercase tracking-tighter whitespace-nowrap">
             SANTOS
           </h1>
         </div>
 
         <div className="max-w-7xl w-full flex flex-col md:flex-row items-center justify-between relative z-10 gap-10 md:gap-0">
-          {/* LADO ESQUERDO: TEXTO */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left z-20">
             <h1 className="text-6xl md:text-8xl font-black text-white mb-2 tracking-tighter leading-[0.9]">
-              ANA
-              <br />
-              <span className="text-transparent md:ml-7 bg-clip-text bg-gradient-to-r from-[#692CB6] to-purple-400 pr-4">
+              ANA <br />
+              <span className="text-transparent md:ml-7 bg-clip-text bg-gradient-to-r from-[#8B5CF6] via-purple-300 to-indigo-200 pr-4">
                 CLARA
               </span>
             </h1>
-            <p className="text-zinc-500 text-lg md:text-xl font-medium mt-6 mb-10 max-w-md leading-relaxed">
+            <p className="text-zinc-300 text-lg md:text-xl font-medium mt-6 mb-10 max-w-md leading-relaxed">
               Desenvolvedora Web | React.js | TypeScript | Next.js | Tailwind CSS | JavaScript | MYSQL
             </p>
 
-            {/* CURRÍCULO */}
-            <a
-              href="/AnaClaraSantosPereira_Curriculo.pdf"
-              download="Currículo_Ana_Clara_Santos_Pereira.pdf"
-            >
-              <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest hover:bg-[#692CB6] transition-all duration-150 cursor-pointer hover:scale-105">
+            <a href="/AnaClaraSantosPereira_Curriculo.pdf" download="Currículo_Ana_Clara_Santos_Pereira.pdf">
+              <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-10 py-5 rounded-full uppercase text-xs tracking-widest bg-[#692CB6]/20 hover:bg-[#692CB6] transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-[0_0_30px_rgba(105,44,182,0.5)]">
                 Download CV
                 <Download size={16} />
               </button>
             </a>
           </div>
 
-          {/* LADO DIREITO: FOTO */}
-          <div className="relative mt-4 md:mt-0 z-10">
-            <div className="absolute -inset-4 border border-[#692CB6]/20 rounded-full" />
-
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-[450px] md:h-[450px] overflow-hidden rounded-full border-[8px] border-[#131313] shadow-[0_0_50px_rgba(105,44,182,0.1)]">
+          <div className="relative mt-4 md:mt-0 z-10 -translate-x-10 md:-translate-x-24">
+            <div className="absolute -inset-3 border border-[#692CB6]/40 rounded-full animate-pulse" />
+            <div className="relative w-36 h-36 sm:w-60 sm:h-60 md:w-[340px] md:h-[340px] overflow-hidden rounded-full border-[6px] border-[#18181c] shadow-[0_0_50px_rgba(105,44,182,0.35)] group">
               <Image
-                src="/Profile.png"
+                src="/eu3.jpeg"
                 alt="Ana Clara"
                 fill
                 priority
-                className="cursor-pointer hover:scale-105 transition-all duration-700 object-cover"
-                sizes="(max-width: 768px) 256px, 450px"
+                className="cursor-pointer group-hover:scale-105 transition-all duration-700 object-cover"
+                sizes="(max-width: 768px) 144px, 360px"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0d] via-transparent to-transparent opacity-60 pointer-events-none" />
             </div>
           </div>
         </div>
       </header>
 
-      {/* SEÇÃO SOBRE MIM */}
-      <section
-        id="sobre"
-        className="relative flex flex-col items-center justify-center py-20 px-6"
-      >
-        <div className="relative z-10 text-center max-w-3xl">
-          <h3 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tighter">
-            Sobre mim
-          </h3>
-          <div className="w-24 h-1 bg-[#692CB6] rounded mx-auto mb-10" />
+      {/* SEÇÃO TECNOLOGIAS */}
+      <section id="tecnologias" className="py-24 px-6 relative z-10 bg-[#0f0f14]/60 border-y border-white/5 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col items-center mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Stack Técnica</span>
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+              Tecnologias & Ferramentas
+            </h2>
+            <div className="h-1 w-12 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
+          </div>
 
-          <div className="space-y-6 text-zinc-400 text-lg md:text-xl font-medium leading-relaxed">
-            <p>
-              Como Desenvolvedora <span className="text-zinc-100">Web</span>, tenho sólida experiência em projetos pessoais e acadêmicos, utilizando tecnologias modernas como TypeScript, Tailwind CSS, React.js e Next.js.
-            </p>
-            <p>
-              Sou apaixonada em criar interfaces <span className="text-zinc-100 italic">autênticas e limpas</span>, que passem de forma direta uma mensagem e sejam inspiradoras. Meu objetivo é continuar evoluindo em projetos cada vez mais desafiadores e contribuir com times que prezam pela inovação e autênticidade.
-            </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            {tecnologias.map((tech) => (
+              <div
+                key={tech.nome}
+                className="group flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
+              >
+                <div className="relative w-12 h-12 md:w-14 md:h-14 mb-3 transition-all duration-300 group-hover:-translate-y-2 group-hover:drop-shadow-[0_10px_20px_rgba(139,92,246,0.6)]">
+                  <Image
+                    src={tech.src}
+                    alt={tech.nome}
+                    fill
+                    className="object-contain filter grayscale-0 transition-all duration-300"
+                    unoptimized
+                  />
+                </div>
+                <span className="text-xs font-semibold text-zinc-400 group-hover:text-white transition-colors tracking-wide">
+                  {tech.nome}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SITES PORTFÓLIO */}
-      <section
-        id="portfolios"
-        className="bg-[#0c0c0c] py-20 md:py-32 px-6 flex justify-center items-center"
-      >
-        <div className="max-w-7xl mx-auto w-full cursor-pointer">
-          <div className="flex flex-col items-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-4">
-              Projetos
+      {/* SEÇÃO SOBRE MIM */}
+      <section id="sobre" className="relative py-28 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col items-center mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Minha História</span>
+            <h3 className="text-4xl md:text-6xl font-black text-white tracking-tight">
+              Sobre mim
+            </h3>
+            <div className="h-1 w-16 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* LADO ESQUERDO: CARD DE CÓDIGO (Mais Iluminado e Nítido) */}
+            <div className="bg-[#15151a] border border-white/15 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] font-mono text-sm relative overflow-hidden group hover:border-[#8B5CF6]/60 transition-all duration-300">
+              <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                <span className="text-xs text-zinc-400 ml-2">desenvolvedora.ts</span>
+              </div>
+
+              <div className="space-y-2 text-xs md:text-sm leading-relaxed">
+                <p className="text-purple-300"><span className="text-pink-400">const</span> desenvolvedora = &#123;</p>
+                <p className="pl-4 text-zinc-200">nome: <span className="text-emerald-300">&quot;Ana Clara Santos&quot;</span>,</p>
+                <p className="pl-4 text-zinc-200">foco: <span className="text-emerald-300">&quot;Full Stack &amp; UI/UX Design&quot;</span>,</p>
+                <p className="pl-4 text-zinc-200">localizacao: <span className="text-emerald-300">&quot;Brasil&quot;</span>,</p>
+                <p className="pl-4 text-zinc-200">
+                  paixao: <span className="text-emerald-300">&quot;Criar interfaces autênticas e modernas&quot;</span>,
+                </p>
+                <p className="pl-4 text-zinc-200">
+                  proposito: <span className="text-emerald-300">&quot;Inovação com propósito e valor real&quot;</span>,
+                </p>
+                <p className="text-purple-300">&#125;;</p>
+              </div>
+            </div>
+
+            {/* LADO DIREITO: TEXTO COM MAIS CONTRASTE */}
+            <div className="space-y-6 text-zinc-300 text-md leading-relaxed text-left">
+              <p>
+                Minha história na tecnologia começou no ensino técnico (AMS), onde aprendi a base de lógica de programação. Hoje, cursando Análise e Desenvolvimento de Sistemas, foco meus projetos na linguagem <span className="text-white font-semibold">React.js, Next.js e TypeScript</span>.
+              </p>
+              <p>
+                Gosto de pensar em problemas reais e transformar em interfaces <span className="text-white font-medium">autênticas, bonitas e fáceis de usar</span>. Para mim, o código só faz sentido quando resolve alguma dor de verdade ou ajuda um grupo de pessoas que realmente precisa.
+              </p>
+              <p className="text-base text-zinc-400">
+                Estou sempre criando projetos práticos para evoluir e quero trocar experiências com times que também acreditam em tecnologia com propósito.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJETOS */}
+      <section id="portfolios" className="py-28 px-6 bg-[#0e0e12] border-y border-white/10 relative">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="flex flex-col items-center mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Portfólio</span>
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight">
+              Projetos em Destaque
             </h2>
-            <div className="h-1 w-20 bg-[#692CB6] rounded-full" />
+            <div className="h-1 w-16 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
           </div>
 
           <div className="flex items-center justify-center w-full">
@@ -135,35 +201,58 @@ export default function PortfolioHub() {
       </section>
 
       {/* CONTATO */}
-      <section
-        id="contato"
-        className="w-full flex flex-col items-center justify-center bg-[#131313] py-16 px-6"
-      >
-        <div className="bg-[#0c0c0c] rounded-xl p-8 w-full max-w-3xl">
-          <div className="flex flex-col items-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-white uppercase tracking-tight mb-4">
-              Contato
-            </h2>
-            <div className="h-1 w-20 bg-[#692CB6] rounded-full mb-8" />
-            <div className="flex flex-row gap-8 justify-center items-center">
-              <a href="https://www.linkedin.com/in/ana-pereira-dev/" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin size={40} className="hover:text-zinc-500 transition-all duration-150 cursor-pointer" />
+      <section id="contato" className="w-full py-24 px-6 relative">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#181820] via-[#121218] to-[#181820] border border-white/15 rounded-2xl p-8 md:p-12 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.7)]">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div className="max-w-xl">
+              <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2 block">
+                Vamos Conversar?
+              </span>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-wide mb-3">
+                Entre em Contato
+              </h2>
+              <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
+                Sinta-se à vontade para enviar uma mensagem sobre parcerias, oportunidades ou para trocar uma ideia!
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center md:items-end gap-6 shrink-0">
+              <a
+                href="mailto:pereira.anaclara1303@gmail.com"
+                className="flex items-center gap-3 bg-[#692CB6]/20 border border-[#8B5CF6]/40 hover:border-[#8B5CF6] px-6 py-3.5 rounded-full text-xs md:text-sm font-semibold text-white transition-all hover:bg-[#692CB6] hover:scale-105"
+              >
+                <Mail size={18} className="text-purple-300" />
+                <span>pereira.anaclara1303@gmail.com</span>
               </a>
-              <a href="https://github.com/AnaClara-S-Pereira" target="_blank" rel="noopener noreferrer">
-                <FaGithub size={40} className="hover:text-zinc-500 transition-all duration-150 cursor-pointer" />
-              </a>
-              <a href="mailto:pereira.anaclara1303@gmail.com" target="_blank" rel="noopener noreferrer">
-                <Mail size={40} className="hover:text-zinc-500 transition-all duration-150 cursor-pointer" />
-              </a>
+
+              {/* REDES SOCIAIS ALINHADAS */}
+              <div className="flex gap-4 items-center">
+                <a
+                  href="https://www.linkedin.com/in/ana-pereira-dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white/10 border border-white/10 rounded-full hover:border-[#8B5CF6] hover:bg-[#692CB6] text-white hover:scale-110 transition-all"
+                >
+                  <FaLinkedin size={20} />
+                </a>
+                <a
+                  href="https://github.com/AnaClara-S-Pereira"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white/10 border border-white/10 rounded-full hover:border-[#8B5CF6] hover:bg-[#692CB6] text-white hover:scale-110 transition-all"
+                >
+                  <FaGithub size={20} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="p-8 text-center bg-[#260b47]">
-        <p className="text-[10px] tracking-wide uppercase text-zinc-400">
-          Copyright © 2026 Ana Santos. Todos os direitos reservados.
+      <footer className="py-8 text-center bg-[#07070a] border-t border-white/10">
+        <p className="text-[11px] tracking-widest uppercase text-zinc-400">
+          © 2026 - Desenvolvido por Ana Clara Santos. Todos os direitos reservados.
         </p>
       </footer>
     </div>
