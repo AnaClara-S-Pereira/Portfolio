@@ -75,12 +75,11 @@ export default function PortfolioHub() {
             <div className="absolute -inset-2.5 border border-[#692CB6]/40 rounded-full animate-pulse" />
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[5px] md:border-[6px] border-[#18181c] shadow-[0_0_40px_rgba(105,44,182,0.35)] group">
               <Image
-                src="/AnaClara.jpeg"
+                src="/Profile.png"
                 alt="Ana Clara"
                 fill
                 priority
-                className="cursor-pointer group-hover:scale-105 transition-all duration-700 object-cover"
-                sizes="(max-width: 640px) 288px, (max-width: 768px) 320px, 360px"
+                className="cursor-pointer -mt-2  group-hover:scale-105 transition-all duration-700 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-30 pointer-events-none" />
             </div>
