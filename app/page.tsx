@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Download, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import CardProjeto from "./card/page";
+import { motion } from "framer-motion";
+import Typewriter from "typewriter-effect";
 
 const tecnologias = [
   { nome: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
@@ -20,6 +22,18 @@ const tecnologias = [
 ];
 
 export default function PortfolioHub() {
+  // Estado para controlar a animação das linhas do card
+  const [linha, setLinha] = useState(0);
+
+  useEffect(() => {
+    if (linha < 5) {
+      const timer = setTimeout(() => {
+        setLinha((prev) => prev + 1);
+      }, 350); // Ajuste a velocidade da digitação aqui (em milissegundos)
+      return () => clearTimeout(timer);
+    }
+  }, [linha]);
+
   return (
     <div className="bg-[#0a0a0d] min-h-screen text-zinc-200 font-sans selection:bg-[#692CB6]/40 selection:text-white overflow-x-hidden relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[300px] md:h-[500px] bg-[#692CB6]/15 blur-[120px] md:blur-[160px] pointer-events-none rounded-full" />
@@ -29,20 +43,21 @@ export default function PortfolioHub() {
       {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/10 backdrop-blur-xl bg-black/50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex justify-between items-center">
-          <div className="relative w-8 h-8 md:w-10 md:h-10 hover:opacity-80 transition-opacity cursor-pointer">
+          <div className="relative w-8 h-8 md:w-10 md:h-10 hover:opacity-80 transition-opacity cursor-pointer flex-shrink-0">
             <Image src="/logo.png" alt="A.S" fill sizes="40px" className="object-contain" />
           </div>
-
-          <div className="hidden md:flex gap-6 lg:gap-10 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300">
-            <a href="#home" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Início</a>
-            <a href="#tecnologias" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Tecnologias</a>
-            <a href="#sobre" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Sobre</a>
-            <a href="#portfolios" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Projetos</a>
-            <a href="#contato" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Contato</a>
+          <div className="flex gap-4 md:gap-6 lg:gap-10 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300 overflow-x-auto no-scrollbar py-2">
+            <a href="#home" className="hover:text-white hover:text-white transition-all flex-shrink-0">Início</a>
+            <a href="#tecnologias" className="hover:text-white hover:text-white transition-all flex-shrink-0">Tecnologias</a>
+            <a href="#sobre" className="hover:text-white hover:text-white transition-all flex-shrink-0">Sobre</a>
+            <a href="#portfolios" className="hover:text-white hover:text-white transition-all flex-shrink-0">Projetos</a>
+            <a href="#contato" className="hover:text-white hover:text-white transition-all flex-shrink-0">Contato</a>
           </div>
         </div>
       </nav>
-      {/*HEADER*/}
+
+
+      {/* HEADER */}
       <header id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-6 overflow-hidden">
         <div className="absolute inset-0 hidden md:flex items-center justify-center overflow-hidden pointer-events-none select-none z-0">
           <h1 className="text-[22vw] font-black text-white/[0.04] leading-none uppercase tracking-tighter whitespace-nowrap">
@@ -51,7 +66,6 @@ export default function PortfolioHub() {
         </div>
 
         <div className="max-w-7xl w-full flex flex-col-reverse md:flex-row items-center justify-between relative z-10 gap-8 md:gap-0">
-
           <div className="flex flex-col items-center md:items-start text-center md:text-left z-20">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-2 tracking-tighter leading-[0.95] md:leading-[0.9]">
               ANA <br />
@@ -72,25 +86,30 @@ export default function PortfolioHub() {
           </div>
 
           <div className="relative z-10 mb-5 md:mb-0 md:translate-x-0 lg:-translate-x-12">
-            <div className="absolute -inset-2.5 border border-[#692CB6]/40 rounded-full animate-pulse" />
+            <div className="absolute -inset-2.5 border border-[#692CB6]/40 rounded-full" />
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[320px] md:h-[320px] lg:w-[360px] lg:h-[360px] overflow-hidden rounded-full border-[5px] md:border-[6px] border-[#18181c] shadow-[0_0_40px_rgba(105,44,182,0.35)] group">
               <Image
                 src="/profile.jpeg"
                 alt="Ana Clara"
                 fill
                 priority
-                className="cursor-pointer -mt-2  group-hover:scale-105 transition-all duration-700 object-cover"
+                className="cursor-pointer -mt-2 group-hover:scale-105 transition-all duration-700 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 pointer-events-none" />
             </div>
           </div>
-
         </div>
       </header>
 
       {/* SEÇÃO TECNOLOGIAS */}
       <section id="tecnologias" className="py-16 md:py-24 px-4 sm:px-6 relative z-10 bg-[#0f0f14]/60 border-y border-white/5 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
           <div className="flex flex-col items-center mb-10 md:mb-16">
             <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Stack Técnica</span>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight text-center">
@@ -105,7 +124,7 @@ export default function PortfolioHub() {
                 key={tech.nome}
                 className="group flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
               >
-                <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mb-2 md:mb-3 transition-all duration-300 group-hover:-translate-y-2 group-hover:drop-shadow-[0_10px_20px_rgba(139,92,246,0.6)]">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 mb-2 md:mb-3 transition-all duration-300 group-hover:-translate-y-2">
                   <Image
                     src={tech.src}
                     alt={tech.nome}
@@ -120,12 +139,18 @@ export default function PortfolioHub() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* SEÇÃO SOBRE MIM */}
       <section id="sobre" className="relative py-16 md:py-28 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
           <div className="flex flex-col items-center mb-10 md:mb-16">
             <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Minha História</span>
             <h3 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight text-center">
@@ -141,20 +166,28 @@ export default function PortfolioHub() {
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                <span className="text-xs text-zinc-400 ml-2">desenvolvedora.ts</span>
               </div>
 
               <div className="space-y-2 leading-relaxed">
-                <p className="text-purple-300"><span className="text-pink-400">const</span> desenvolvedora = &#123;</p>
-                <p className="pl-4 text-zinc-200">nome: <span className="text-emerald-300">&quot;Ana Clara Santos&quot;</span>,</p>
-                <p className="pl-4 text-zinc-200">foco: <span className="text-emerald-300">&quot;Full Stack &amp; UI/UX Design&quot;</span>,</p>
-                <p className="pl-4 text-zinc-200">localizacao: <span className="text-emerald-300">&quot;Brasil&quot;</span>,</p>
-                <p className="pl-4 text-zinc-200">
-                  paixao: <span className="text-emerald-300">&quot;Criar interfaces autênticas e modernas&quot;</span>,
+                <p className="text-purple-300">
+                  <span className="text-pink-400">const </span> desenvolvedora = &#123;
                 </p>
-                <p className="pl-4 text-zinc-200">
-                  proposito: <span className="text-emerald-300">&quot;Inovação com propósito e valor real&quot;</span>,
-                </p>
+
+                <div className="pl-4 text-zinc-200">
+                  <Typewriter onInit={(typewriter) => {
+                    typewriter
+                      .changeDelay(30)
+                      .typeString('nome: <span class="text-emerald-300">"Ana Clara Santos Pereira"</span>,<br/>')
+                      .typeString('foco: <span class="text-emerald-300">"Full Stack e UI/UX Design"</span>,<br/>')
+                      .typeString('localizacao: <span class="text-emerald-300">"Taubaté, SP"</span>,<br/>')
+                      .typeString('paixao: <span class="text-emerald-300">"Criar novas ideias com design e tecnologias modernas"</span>,<br/>')
+                      .typeString('const_evoluindo: <span class="text-emerald-300">true</span>')
+                      .start();
+                  }} />
+                </div>
+
+
+
                 <p className="text-purple-300">&#125;;</p>
               </div>
             </div>
@@ -167,17 +200,20 @@ export default function PortfolioHub() {
               <p>
                 Gosto de pensar em problemas reais e transformar em interfaces <span className="text-white font-medium">autênticas, bonitas e fáceis de usar</span>. Para mim, o código só faz sentido quando resolve alguma dor de verdade ou ajuda um grupo de pessoas que realmente precisa.
               </p>
-              <p className="text-zinc-400">
-                Estou sempre criando projetos práticos para evoluir e quero trocar experiências com times que também acreditam em tecnologia com propósito.
-              </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* PROJETOS */}
       <section id="portfolios" className="py-16 md:py-28 px-4 sm:px-6 bg-[#0e0e12] border-y border-white/10 relative">
-        <div className="max-w-7xl mx-auto w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-7xl mx-auto w-full"
+        >
           <div className="flex flex-col items-center mb-10 md:mb-16">
             <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Portfólio</span>
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight text-center">
@@ -194,12 +230,18 @@ export default function PortfolioHub() {
               tecnologias="TypeScript | Node.js | Next.js"
             />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* CONTATO */}
       <section id="contato" className="w-full py-16 md:py-24 px-4 sm:px-6 relative">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#181820] via-[#121218] to-[#181820] border border-white/15 rounded-2xl p-6 sm:p-8 md:p-12 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.7)]">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-5xl mx-auto bg-gradient-to-r from-[#181820] via-[#121218] to-[#181820] border border-white/15 rounded-2xl p-6 sm:p-8 md:p-12 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.7)]"
+        >
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div className="max-w-xl">
               <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2 block">
@@ -243,7 +285,7 @@ export default function PortfolioHub() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* FOOTER */}
