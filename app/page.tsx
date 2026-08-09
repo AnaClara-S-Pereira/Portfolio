@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, Menu, X } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import CardProjeto from "./card/page";
@@ -21,19 +21,9 @@ const tecnologias = [
   { nome: "MySQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
 ];
 
-export default function PortfolioHub() {
-  // Estado para controlar a animação das linhas do card
-  const [linha, setLinha] = useState(0);
-
-  useEffect(() => {
-    if (linha < 5) {
-      const timer = setTimeout(() => {
-        setLinha((prev) => prev + 1);
-      }, 350); // Ajuste a velocidade da digitação aqui (em milissegundos)
-      return () => clearTimeout(timer);
-    }
-  }, [linha]);
-
+export default function Portfolio() {
+  const [menuAberto, setMenuAberto] = useState(false);
+  const fecharMenu = () => setMenuAberto(false);
   return (
     <div className="bg-[#0a0a0d] min-h-screen text-zinc-200 font-sans selection:bg-[#692CB6]/40 selection:text-white overflow-x-hidden relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[300px] md:h-[500px] bg-[#692CB6]/15 blur-[120px] md:blur-[160px] pointer-events-none rounded-full" />
@@ -43,19 +33,39 @@ export default function PortfolioHub() {
       {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/10 backdrop-blur-xl bg-black/50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex justify-between items-center">
-          <div className="relative w-8 h-8 md:w-10 md:h-10 hover:opacity-80 transition-opacity cursor-pointer flex-shrink-0">
+          <div className="relative w-8 h-8 md:w-10 md:h-10 hover:opacity-80 transition-opacity cursor-pointer">
             <Image src="/logo.png" alt="A.S" fill sizes="40px" className="object-contain" />
           </div>
-          <div className="flex gap-4 md:gap-6 lg:gap-10 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300 overflow-x-auto no-scrollbar py-2">
-            <a href="#home" className="hover:text-white hover:text-white transition-all flex-shrink-0">Início</a>
-            <a href="#tecnologias" className="hover:text-white hover:text-white transition-all flex-shrink-0">Tecnologias</a>
-            <a href="#sobre" className="hover:text-white hover:text-white transition-all flex-shrink-0">Sobre</a>
-            <a href="#portfolios" className="hover:text-white hover:text-white transition-all flex-shrink-0">Projetos</a>
-            <a href="#contato" className="hover:text-white hover:text-white transition-all flex-shrink-0">Contato</a>
-          </div>
-        </div>
-      </nav>
 
+          <div className="hidden md:flex gap-6 lg:gap-10 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300">
+            <a href="#home" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Início</a>
+            <a href="#tecnologias" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Tecnologias</a>
+            <a href="#sobre" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Sobre</a>
+            <a href="#portfolios" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Projetos</a>
+            <a href="#contato" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Contato</a>
+          </div>
+
+          {/* BOTÃO DE MENU MOBILE */}
+          <button
+            onClick={() => setMenuAberto(!menuAberto)}
+            className="md:hidden text-zinc-300 hover:text-white p-2 cursor-pointer focus:outline-none"
+            aria-label="Abrir menu"
+          >
+            {menuAberto ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/*NAVBAR MOBILE*/}
+        {menuAberto && (
+          <div className="md:hidden bg-[#0a0a0d]/95 border-b border-white/10 px-6 py-6 flex flex-col gap-5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300 backdrop-blur-xl">
+            <a href="#home" onClick={fecharMenu} className="hover:text-white transition-colors">Início</a>
+            <a href="#tecnologias" onClick={fecharMenu} className="hover:text-white transition-colors">Tecnologias</a>
+            <a href="#sobre" onClick={fecharMenu} className="hover:text-white transition-colors">Sobre</a>
+            <a href="#portfolios" onClick={fecharMenu} className="hover:text-white transition-colors">Projetos</a>
+            <a href="#contato" onClick={fecharMenu} className="hover:text-white transition-colors">Contato</a>
+          </div>
+        )}
+      </nav>
 
       {/* HEADER */}
       <header id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-12 md:py-0 px-6 overflow-hidden">
