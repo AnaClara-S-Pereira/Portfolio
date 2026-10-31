@@ -1,11 +1,55 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Download, Mail, Menu, X } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { Download, Mail, Menu, X, Monitor, Palette, Database, GraduationCap, Code } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { TbWorldCode } from "react-icons/tb";
 import Image from "next/image";
 import CardProjeto from "./card/page";
-import { motion } from "framer-motion";
+import { motion, useInView, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import Typewriter from "typewriter-effect";
+
+const linksNav = [
+  { id: "home", nome: "Início" },
+  { id: "tecnologias", nome: "Tecnologias" },
+  { id: "sobre", nome: "Sobre" },
+  { id: "portfolios", nome: "Projetos" },
+];
+
+const servicos = [
+  {
+    icone: Monitor,
+    titulo: "Front-end",
+    texto: "Interfaces responsivas e rápidas com React, Next.js, TypeScript e Tailwind CSS.",
+  },
+  {
+    icone: Palette,
+    titulo: "UI/UX Design",
+    texto: "Layouts pensados para quem usa: claros, bonitos e fáceis de navegar.",
+  },
+  {
+    icone: Database,
+    titulo: "Back-end & Dados",
+    texto: "APIs e bancos de dados com Node.js, PHP e MySQL para dar vida às telas.",
+  },
+];
+
+const trajetoria = [
+  {
+    icone: Code,
+    titulo: "Etec - Desenvolvimento de Sistemas AMS",
+    texto: "Primeiro contato com programação e a base de lógica que uso até hoje.",
+  },
+  {
+    icone: GraduationCap,
+    titulo: "Fatec - Análise e Desenvolvimento de Sistemas",
+    texto: "Graduação em andamento, com foco em React.js, Next.js e TypeScript.",
+  },
+  {
+    icone: TbWorldCode,
+    titulo: "Projetos com propósito",
+    texto: "BugCost, Pluvite e outros projetos que transformam problemas reais em produto.",
+  },
+];
 
 const tecnologias = [
   { nome: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
@@ -24,6 +68,35 @@ const tecnologias = [
 export default function Portfolio() {
   const [menuAberto, setMenuAberto] = useState(false);
   const fecharMenu = () => setMenuAberto(false);
+  const codigoRef = useRef<HTMLDivElement>(null);
+  const codigoVisivel = useInView(codigoRef, { once: true, amount: 0.3 });
+  const [rolou, setRolou] = useState(false);
+  const [secaoAtiva, setSecaoAtiva] = useState("home");
+  const { scrollYProgress } = useScroll();
+  const progresso = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+
+  useEffect(() => {
+    const aoRolar = () => setRolou(window.scrollY > 20);
+    aoRolar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+
+    const observer = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((e) => e.isIntersecting && setSecaoAtiva(e.target.id));
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    ["home", "tecnologias", "sobre", "portfolios", "contato"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", aoRolar);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="bg-[#0a0a0d] min-h-screen text-zinc-200 font-sans selection:bg-[#692CB6]/40 selection:text-white overflow-x-hidden relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[300px] md:h-[500px] bg-[#692CB6]/15 blur-[120px] md:blur-[160px] pointer-events-none rounded-full" />
@@ -31,18 +104,43 @@ export default function Portfolio() {
       <div className="absolute top-[70%] -right-40 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#692CB6]/15 blur-[120px] md:blur-[180px] pointer-events-none rounded-full" />
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 border-b border-white/10 backdrop-blur-xl bg-black/50 transition-all duration-300">
+      <nav
+        className={`fixed top-0 w-full z-50 border-b backdrop-blur-xl transition-all duration-300 ${
+          rolou
+            ? "bg-[#0a0a0d]/80 border-[#692CB6]/30 shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
+            : "bg-black/30 border-white/10"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex justify-between items-center">
-          <div className="relative w-8 h-8 md:w-10 md:h-10 hover:opacity-80 transition-opacity cursor-pointer">
-            <Image src="/logo.png" alt="A.S" fill sizes="40px" className="object-contain" />
-          </div>
+          <a href="#home" className="flex items-center gap-3 group">
+            <div className="relative w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform">
+              <Image src="/logo.png" alt="A.S" fill sizes="40px" className="object-contain" />
+            </div>
+          </a>
 
-          <div className="hidden md:flex gap-6 lg:gap-10 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300">
-            <a href="#home" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Início</a>
-            <a href="#tecnologias" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Tecnologias</a>
-            <a href="#sobre" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Sobre</a>
-            <a href="#portfolios" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Projetos</a>
-            <a href="#contato" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Contato</a>
+          <div className="hidden md:flex items-center gap-2 lg:gap-4 text-xs font-semibold uppercase tracking-[0.2em]">
+            {linksNav.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`relative px-3 py-2 transition-colors ${
+                  secaoAtiva === link.id ? "text-white" : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                {link.nome}
+                <span
+                  className={`absolute left-3 right-3 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-[#692CB6] to-purple-300 origin-left transition-transform duration-300 ${
+                    secaoAtiva === link.id ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </a>
+            ))}
+            <a
+              href="#contato"
+              className="ml-2 px-5 py-2.5 rounded-full border border-[#8B5CF6]/60 bg-[#692CB6]/20 text-white hover:bg-[#692CB6] hover:shadow-[0_0_20px_rgba(105,44,182,0.5)] transition-all"
+            >
+              Contato
+            </a>
           </div>
 
           {/* BOTÃO DE MENU MOBILE */}
@@ -56,15 +154,40 @@ export default function Portfolio() {
         </div>
 
         {/*NAVBAR MOBILE*/}
-        {menuAberto && (
-          <div className="md:hidden bg-[#0a0a0d]/95 border-b border-white/10 px-6 py-6 flex flex-col gap-5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-300 backdrop-blur-xl">
-            <a href="#home" onClick={fecharMenu} className="hover:text-white transition-colors">Início</a>
-            <a href="#tecnologias" onClick={fecharMenu} className="hover:text-white transition-colors">Tecnologias</a>
-            <a href="#sobre" onClick={fecharMenu} className="hover:text-white transition-colors">Sobre</a>
-            <a href="#portfolios" onClick={fecharMenu} className="hover:text-white transition-colors">Projetos</a>
-            <a href="#contato" onClick={fecharMenu} className="hover:text-white transition-colors">Contato</a>
-          </div>
-        )}
+        <AnimatePresence>
+          {menuAberto && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="md:hidden overflow-hidden bg-[#0a0a0d]/95 border-t border-white/10 backdrop-blur-xl"
+            >
+              <div className="px-6 py-6 flex flex-col gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
+                {[...linksNav, { id: "contato", nome: "Contato" }].map((link) => (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={fecharMenu}
+                    className={`py-3 border-l-2 pl-4 transition-colors ${
+                      secaoAtiva === link.id
+                        ? "border-[#8B5CF6] text-white"
+                        : "border-transparent text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {link.nome}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* BARRA DE PROGRESSO */}
+        <motion.div
+          style={{ scaleX: progresso }}
+          className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-[#692CB6] via-[#8B5CF6] to-purple-300"
+        />
       </nav>
 
       {/* HEADER */}
@@ -103,9 +226,10 @@ export default function Portfolio() {
                 alt="Ana Clara"
                 fill
                 priority
-                className="cursor-pointer -mt-2 group-hover:scale-105 transition-all duration-700 object-cover"
+                quality={95}
+                sizes="(min-width: 1024px) 360px, (min-width: 768px) 320px, 320px"
+                className="cursor-pointer -mt-2 group-hover:scale-105 transition-all duration-700 object-cover saturate-110 contrast-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 pointer-events-none" />
             </div>
           </div>
         </div>
@@ -152,6 +276,40 @@ export default function Portfolio() {
         </motion.div>
       </section>
 
+      {/* O QUE EU FAÇO */}
+      <section id="servicos" className="relative py-16 md:py-24 px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-6xl mx-auto"
+        >
+          <div className="flex flex-col items-center mb-10 md:mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Especialidades</span>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white tracking-tight text-center">
+              O que eu faço
+            </h2>
+            <div className="h-1 w-12 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {servicos.map(({ icone: Icone, titulo, texto }) => (
+              <div
+                key={titulo}
+                className="group bg-[#15151a] border border-white/10 rounded-2xl p-6 md:p-8 hover:border-[#8B5CF6]/60 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(105,44,182,0.25)] transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#692CB6]/20 border border-[#692CB6]/40 flex items-center justify-center mb-5 group-hover:bg-[#692CB6] transition-colors">
+                  <Icone size={22} className="text-purple-200" />
+                </div>
+                <h3 className="text-lg font-black text-white mb-2">{titulo}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">{texto}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* SEÇÃO SOBRE MIM */}
       <section id="sobre" className="relative py-16 md:py-28 px-4 sm:px-6">
         <motion.div
@@ -171,7 +329,7 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* CARD DE CÓDIGO */}
-            <div className="bg-[#15151a] border border-white/15 rounded-2xl p-5 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] font-mono text-xs sm:text-sm relative overflow-hidden group hover:border-[#8B5CF6]/60 transition-all duration-300">
+            <div ref={codigoRef} className="bg-[#15151a] border border-white/15 rounded-2xl p-5 sm:p-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] font-mono text-xs sm:text-sm relative overflow-hidden group hover:border-[#8B5CF6]/60 transition-all duration-300">
               <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-3">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -183,19 +341,20 @@ export default function Portfolio() {
                   <span className="text-pink-400">const </span> desenvolvedora = &#123;
                 </p>
 
-                <div className="pl-4 text-zinc-200">
-                  <Typewriter onInit={(typewriter) => {
-                    typewriter
-                      .changeDelay(30)
-                      .typeString('nome: <span class="text-emerald-300">"Ana Clara Santos Pereira"</span>,<br/>')
-                      .typeString('foco: <span class="text-emerald-300">"Full Stack e UI/UX Design"</span>,<br/>')
-                      .typeString('localizacao: <span class="text-emerald-300">"Taubaté, SP"</span>,<br/>')
-                      .typeString('paixao: <span class="text-emerald-300">"Criar novas ideias com design e tecnologias modernas"</span>,<br/>')
-                      .typeString('const_evoluindo: <span class="text-emerald-300">true</span>')
-                      .start();
-                  }} />
+                <div className="pl-4 text-zinc-200 min-h-[8.5rem]">
+                  {codigoVisivel && (
+                    <Typewriter onInit={(typewriter) => {
+                      typewriter
+                        .changeDelay(30)
+                        .typeString('nome: <span class="text-emerald-300">"Ana Clara Santos Pereira"</span>,<br/>')
+                        .typeString('foco: <span class="text-emerald-300">"Full Stack e UI/UX Design"</span>,<br/>')
+                        .typeString('localizacao: <span class="text-emerald-300">"Taubaté, SP"</span>,<br/>')
+                        .typeString('paixao: <span class="text-emerald-300">"Criar novas ideias com design e tecnologias modernas"</span>,<br/>')
+                        .typeString('const_evoluindo: <span class="text-emerald-300">true</span>')
+                        .start();
+                    }} />
+                  )}
                 </div>
-
 
 
                 <p className="text-purple-300">&#125;;</p>
@@ -211,6 +370,19 @@ export default function Portfolio() {
                 Gosto de pensar em problemas reais e transformar em interfaces <span className="text-white font-medium">autênticas, bonitas e fáceis de usar</span>. Para mim, o código só faz sentido quando resolve alguma dor de verdade ou ajuda um grupo de pessoas que realmente precisa.
               </p>
             </div>
+          </div>
+
+          {/* TRAJETÓRIA */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 md:mt-16">
+            {trajetoria.map(({ icone: Icone, titulo, texto }) => (
+              <div key={titulo} className="flex gap-4 items-start border-l-2 border-[#692CB6]/60 pl-5">
+                <Icone size={20} className="text-[#8B5CF6] shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-white font-bold text-sm sm:text-base mb-1">{titulo}</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">{texto}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -232,12 +404,24 @@ export default function Portfolio() {
             <div className="h-1 w-16 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
           </div>
 
-          <div className="flex items-center justify-center w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center max-w-6xl mx-auto w-full">
             <CardProjeto
               url="https://bug-cost.vercel.app/"
               titulo="BugCost"
-              descricao="Traduza erros técnicos em prejuízo real, visualizando o impacto financeiro."
-              tecnologias="TypeScript | Node.js | Next.js"
+              descricao="Envie um log de erro e o faturamento da empresa: a IA estima o tempo fora do ar, calcula o prejuízo em reais, classifica o risco e sugere o código da correção, com relatório em PDF para gestores."
+              tecnologias="Next.js | TypeScript | Tailwind CSS | Mistral AI"
+            />
+            <CardProjeto
+              url="https://pluvite.vercel.app/"
+              titulo="Pluvite"
+              descricao="Plataforma de monitoramento de riscos climáticos com alertas em tempo real e denúncias de problemas urbanos pelos cidadãos."
+              tecnologias="TypeScript | JavaScript | Python | PLpgSQL"
+            />
+            <CardProjeto
+              url="https://retroa.vercel.app/"
+              titulo="Retrôa"
+              descricao="E-commerce de antiguidades de todo o Brasil, que dá um novo propósito a peças antigas mostrando a história, a origem e os detalhes de cada item. Tem vitrine com busca e filtros, página de produto e carrinho."
+              tecnologias="Next.js | TypeScript | Tailwind CSS | Supabase"
             />
           </div>
         </motion.div>
