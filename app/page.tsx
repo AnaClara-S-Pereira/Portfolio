@@ -4,7 +4,7 @@ import { Download, Mail, Menu, X, Monitor, Palette, Database, GraduationCap, Cod
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import Image from "next/image";
-import CardProjeto from "./card/page";
+import CardProjeto from "./components/CardProjeto";
 import { motion, useInView, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import Typewriter from "typewriter-effect";
 
