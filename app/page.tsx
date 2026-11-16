@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Download, Mail, Menu, X, Monitor, Palette, Database, GraduationCap, Code } from "lucide-react";
+import { ArrowUp, Download, Mail, Menu, X, Monitor, Palette, Database, GraduationCap, Code } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { TbWorldCode } from "react-icons/tb";
 import Image from "next/image";
@@ -210,12 +210,41 @@ export default function Portfolio() {
               Desenvolvedora Web | React.js | TypeScript | Next.js | Tailwind CSS | JavaScript | MySQL
             </p>
 
-            <a href="/AnaClaraSantosPereira_Curriculo.pdf" download="Currículo_Ana_Clara_Santos_Pereira.pdf">
-              <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-7 py-3.5 md:px-10 md:py-5 rounded-full uppercase text-[11px] md:text-xs tracking-widest bg-[#692CB6]/20 hover:bg-[#692CB6] transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-[0_0_30px_rgba(105,44,182,0.5)]">
-                Download CV
-                <Download size={15} />
-              </button>
-            </a>
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <a href="/AnaClaraSantosPereira_Curriculo.pdf" download="Currículo_Ana_Clara_Santos_Pereira.pdf">
+                <button className="flex items-center border-2 border-[#692CB6] gap-3 text-white font-black px-7 py-3.5 md:px-10 md:py-5 rounded-full uppercase text-[11px] md:text-xs tracking-widest bg-[#692CB6]/20 hover:bg-[#692CB6] transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-[0_0_30px_rgba(105,44,182,0.5)]">
+                  Download CV
+                  <Download size={15} />
+                </button>
+              </a>
+              <a
+                href="#portfolios"
+                className="flex items-center border-2 border-white/20 gap-3 text-zinc-200 font-black px-7 py-3.5 md:px-10 md:py-5 rounded-full uppercase text-[11px] md:text-xs tracking-widest hover:border-[#8B5CF6] hover:text-white transition-all duration-300 hover:scale-105"
+              >
+                Ver projetos
+              </a>
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <a
+                href="https://github.com/AnaClara-S-Pereira"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="p-3 bg-white/10 border border-white/10 rounded-full hover:border-[#8B5CF6] hover:bg-[#692CB6] text-white hover:scale-110 transition-all"
+              >
+                <FaGithub size={18} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ana-pereira-dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-3 bg-white/10 border border-white/10 rounded-full hover:border-[#8B5CF6] hover:bg-[#692CB6] text-white hover:scale-110 transition-all"
+              >
+                <FaLinkedin size={18} />
+              </a>
+            </div>
           </div>
 
           <div className="relative z-10 mb-5 md:mb-0 md:translate-x-0 lg:-translate-x-12">
@@ -321,9 +350,9 @@ export default function Portfolio() {
         >
           <div className="flex flex-col items-center mb-10 md:mb-16">
             <span className="text-xs uppercase tracking-[0.3em] text-[#8B5CF6] font-bold mb-2">Minha História</span>
-            <h3 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight text-center">
               Sobre mim
-            </h3>
+            </h2>
             <div className="h-1 w-16 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
           </div>
 
@@ -404,24 +433,34 @@ export default function Portfolio() {
             <div className="h-1 w-16 bg-gradient-to-r from-[#692CB6] to-purple-400 rounded-full mt-4" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center max-w-6xl mx-auto w-full">
+          <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto w-full [&>*]:w-full [&>*]:max-w-[380px] md:[&>*]:max-w-none md:[&>*]:w-[calc(50%-12px)] lg:[&>*]:w-[calc(33.333%-16px)]">
             <CardProjeto
               url="https://bug-cost.vercel.app/"
+              repo="https://github.com/AnaClara-S-Pereira/BugCost"
               titulo="BugCost"
               descricao="Envie um log de erro e o faturamento da empresa: a IA estima o tempo fora do ar, calcula o prejuízo em reais, classifica o risco e sugere o código da correção, com relatório em PDF para gestores."
               tecnologias="Next.js | TypeScript | Tailwind CSS | Mistral AI"
             />
             <CardProjeto
               url="https://pluvite.vercel.app/"
+              repo="https://github.com/JuliaKarollyne-O-Santos/Pluvite"
               titulo="Pluvite"
               descricao="Plataforma de monitoramento de riscos climáticos com alertas em tempo real e denúncias de problemas urbanos pelos cidadãos."
               tecnologias="TypeScript | JavaScript | Python | PLpgSQL"
             />
             <CardProjeto
               url="https://retroa.vercel.app/"
+              repo="https://github.com/AnaClara-S-Pereira/Retroa"
               titulo="Retrôa"
               descricao="E-commerce de antiguidades de todo o Brasil, que dá um novo propósito a peças antigas mostrando a história, a origem e os detalhes de cada item. Tem vitrine com busca e filtros, página de produto e carrinho."
               tecnologias="Next.js | TypeScript | Tailwind CSS | Supabase"
+            />
+            <CardProjeto
+              url="https://rockify-iota.vercel.app/"
+              titulo="Rockify"
+              descricao="Busque qualquer banda de rock, metal, punk ou alternativo e veja integrantes, discografia e prévias de músicas. O destaque é o Livro Negro, um dossiê gerado automaticamente sobre cada integrante, além de quiz que revela a sua tribo musical."
+              tecnologias="React | TypeScript | Tailwind CSS | Vite"
+              repo="https://github.com/AnaClara-S-Pereira/rockify"
             />
           </div>
         </motion.div>
@@ -481,6 +520,22 @@ export default function Portfolio() {
           </div>
         </motion.div>
       </section>
+
+      {/* VOLTAR AO TOPO */}
+      <AnimatePresence>
+        {rolou && (
+          <motion.a
+            href="#home"
+            aria-label="Voltar ao topo"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="fixed bottom-5 right-5 z-40 p-3 rounded-full bg-[#692CB6]/80 border border-[#8B5CF6]/60 text-white backdrop-blur hover:bg-[#692CB6] hover:shadow-[0_0_20px_rgba(105,44,182,0.5)] transition-colors"
+          >
+            <ArrowUp size={20} />
+          </motion.a>
+        )}
+      </AnimatePresence>
 
       {/* FOOTER */}
       <footer className="py-6 sm:py-8 text-center bg-[#07070a] border-t border-white/10 px-4">
