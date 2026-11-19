@@ -455,13 +455,6 @@ export default function Portfolio() {
               descricao="E-commerce de antiguidades de todo o Brasil, que dá um novo propósito a peças antigas mostrando a história, a origem e os detalhes de cada item. Tem vitrine com busca e filtros, página de produto e carrinho."
               tecnologias="Next.js | TypeScript | Tailwind CSS | Supabase"
             />
-            <CardProjeto
-              url="https://rockify-iota.vercel.app/"
-              titulo="Rockify"
-              descricao="Busque qualquer banda de rock, metal, punk ou alternativo e veja integrantes, discografia e prévias de músicas. O destaque é o Livro Negro, um dossiê gerado automaticamente sobre cada integrante, além de quiz que revela a sua tribo musical."
-              tecnologias="React | TypeScript | Tailwind CSS | Vite"
-              repo="https://github.com/AnaClara-S-Pereira/rockify"
-            />
           </div>
         </motion.div>
       </section>
